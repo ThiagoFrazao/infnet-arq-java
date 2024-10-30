@@ -5,31 +5,34 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "VENDEDOR")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Vendedor extends Trabalhador {
+public class Transacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToOne
-    private Endereco endereco;
+    @ManyToOne
+    private Empregado vendedor;
 
-    @OneToMany
-    private Set<Venda> vendas;
+    @ManyToOne
+    private Cliente cliente;
+
+    private TipoTransacao tipo;
+
+    private LocalDateTime dataInicio;
+
+    private LocalDateTime dataFim;
 
 }
