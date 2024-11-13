@@ -31,7 +31,7 @@ public class Loja {
 
     private String nome;
 
-    @OneToMany
+    @OneToMany(mappedBy = "loja")
     private Set<Empregado> empregados;
 
 }

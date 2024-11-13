@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,16 +22,15 @@ public class Endereco {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "cep", nullable = false)
     private String cep;
 
+    @Column(name = "logradouro", nullable = false)
     private String logradouro;
 
+    @Column(name = "numero", nullable = false)
     private Integer numero;
 
     private String complemento;
-
-
-
-
 
 }

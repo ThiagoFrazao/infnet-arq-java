@@ -1,0 +1,13 @@
+[
+  {
+    "endereco": {
+      "cep": "69935-000",
+      "numero": 50
+    },
+    "nome": "Thiago",
+    "cpf": "01234567890",
+    "dataNascimento": "05/11/1993",
+    "email": "thiago.thiago@gmail.com",
+    "telefone": "(21) 94512-5200"
+  }
+]
