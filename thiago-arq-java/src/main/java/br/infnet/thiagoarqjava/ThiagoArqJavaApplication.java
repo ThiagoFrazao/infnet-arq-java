@@ -10,4 +10,5 @@ public class ThiagoArqJavaApplication {
 		SpringApplication.run(ThiagoArqJavaApplication.class, args);
 	}
 
+
 }
