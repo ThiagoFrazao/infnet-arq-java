@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -12,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -27,11 +29,32 @@ public class Loja {
     private Long id;
 
     @OneToOne
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco endereco;
 
     private String nome;
 
+    @OneToMany
+    @JoinColumn(name = "filme_id", referencedColumnName = "id")
+    private Set<Filme> filmes;
+
     @OneToMany(mappedBy = "loja")
     private Set<Empregado> empregados;
 
+    @OneToMany(mappedBy = "loja")
+    private Set<Transacao> transacoes;
+
+    public Set<Empregado> getEmpregados() {
+        if(this.empregados == null) {
+            this.empregados = new HashSet<>();
+        }
+        return this.empregados;
+    }
+
+    public Set<Filme> getFilmes() {
+        if(this.filmes == null) {
+            this.filmes = new HashSet<>();
+        }
+        return this.filmes;
+    }
 }

@@ -45,4 +45,12 @@ public class TransacaoService {
     }
 
 
+    public List<Transacao> salvarTransacoes(List<Transacao> transacoes) {
+        try {
+            return this.repository.saveAll(transacoes);
+        } catch (Exception e) {
+            log.error("Falha ao salvar transacoes {}", transacoes, e);
+            throw new AcessoBancoDadosException("Falha ao salvar novas transacoes.");
+        }
+    }
 }

@@ -1,0 +1,52 @@
+[
+  {
+    "diretor": "Steven Spielberg",
+    "nomeadoOscar": true,
+    "nome": "Jurassic Park",
+    "descricao": "Um parque temático com dinossauros que ganham vida enfrenta problemas quando as criaturas escapam.",
+    "status": "DISPONIVEL",
+    "categoria": "SUSPENSE",
+    "qntDisponivel": 5,
+    "qntTotal": 10
+  },
+  {
+    "diretor": "Alfred Hitchcock",
+    "nomeadoOscar": true,
+    "nome": "Psycho",
+    "descricao": "Uma mulher em fuga encontra refúgio em um motel administrado por um estranho dono.",
+    "status": "ALUGADO",
+    "categoria": "TERROR",
+    "qntDisponivel": 0,
+    "qntTotal": 7
+  },
+  {
+    "diretor": "Robert Zemeckis",
+    "nomeadoOscar": true,
+    "nome": "Forrest Gump",
+    "descricao": "A vida extraordinária de um homem com um coração enorme que vive momentos históricos dos EUA.",
+    "status": "DISPONIVEL",
+    "categoria": "DRAMA",
+    "qntDisponivel": 3,
+    "qntTotal": 5
+  },
+  {
+    "diretor": "Michael Bay",
+    "nomeadoOscar": false,
+    "nome": "Transformers: A Vingança dos Derrotados",
+    "descricao": "Os Autobots enfrentam os Decepticons enquanto Sam descobre segredos antigos sobre as origens dos Transformers.",
+    "status": "VENDIDO",
+    "categoria": "ACAO",
+    "qntDisponivel": 0,
+    "qntTotal": 5
+  },
+  {
+    "diretor": "Tommy Wiseau",
+    "nomeadoOscar": false,
+    "nome": "The Room",
+    "descricao": "Um drama romântico que ganhou fama por sua execução não convencional e falhas técnicas.",
+    "status": "DISPONIVEL",
+    "categoria": "DRAMA",
+    "qntDisponivel": 5,
+    "qntTotal": 8
+  }
+]

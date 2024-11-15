@@ -1,0 +1,13 @@
+[
+  {
+    "endereco": {
+      "cep": "28570000",
+      "numero": 14
+    },
+    "nome": "Aldoberto dos Salvos",
+    "cpf": "0147852369",
+    "dataNascimento": "05/11/1947",
+    "email": "berto.aldo@gmail.com",
+    "telefone": "(22) 5235-4125"
+  }
+]

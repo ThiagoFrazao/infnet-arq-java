@@ -16,7 +16,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "TRANSACAO")
@@ -38,6 +39,10 @@ public class Transacao {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+    @ManyToOne
+    @JoinColumn(name = "filme_id", referencedColumnName = "id")
+    private Loja loja;
+
     @Enumerated(EnumType.STRING)
     private TipoTransacao tipo;
 
@@ -45,17 +50,20 @@ public class Transacao {
     private StatusTransacao statusTransacao;
 
     @OneToMany
-    @JoinColumn(name = "colecao_id", referencedColumnName = "id")
-    private List<Colecao> colecoes;
-
-    @OneToMany
     @JoinColumn(name = "filme_id", referencedColumnName = "id")
-    private List<Filme> filmes;
+    private Set<Filme> filmes;
 
     private LocalDateTime dataInicio;
 
     private LocalDateTime dataFim;
 
     private LocalDateTime dataFimEsperada;
+
+    public void addFilme(Filme filme) {
+        if(this.filmes == null) {
+            this.filmes = new HashSet<>();
+        }
+        this.filmes.add(filme);
+    }
 
 }

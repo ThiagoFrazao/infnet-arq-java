@@ -14,7 +14,7 @@ import lombok.Setter;
 @Table(name = "FILME")
 @Getter
 @Setter
-public class Filme extends Produto {
+public class Filme {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +24,17 @@ public class Filme extends Produto {
     private String diretor;
 
     private boolean nomeadoOscar;
+
+    protected String nome;
+
+    protected String descricao;
+
+    protected StatusProduto status;
+
+    protected Categoria categoria;
+
+    protected int qntDisponivel;
+
+    protected int qntTotal;
 
 }
