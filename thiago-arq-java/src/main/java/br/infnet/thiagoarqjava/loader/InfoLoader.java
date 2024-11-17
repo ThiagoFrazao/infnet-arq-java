@@ -36,7 +36,7 @@ public class InfoLoader {
 
     private static final String CLASSPATH_PREFIX = "classpath:loadfiles/";
     private static final String CLIENTE_FILE_NAME = "clientLoadFile.json";
-    private static final String EMPREGADO_FILE_NAME = "clientLoadFile.json";
+    private static final String EMPREGADO_FILE_NAME = "empregadosLoadFile.json";
     private static final String LOJA_FILE_NAME = "lojaLoadFile.json";
     private static final String FILMES_FILE_NAME = "filmesLoadFile.json";
 
@@ -71,15 +71,28 @@ public class InfoLoader {
             log.debug("Iniciando carga dos arquivos na pasta: \"%s\"".formatted(CLASSPATH_PREFIX));
             final List<Cliente> clientes = this.carregarClientes();
             List<Loja> lojas = this.carregarLojas();
-            final List<Filme> filmes = this.carregarFilmes();
+            List<Filme> filmes = this.carregarFilmes();
             final List<Empregado> empregados = this.carregarEmpregados(lojas);
-            lojas = this.atualizarLojas(lojas, filmes, empregados);
+            lojas = this.atualizarLojas(lojas, empregados);
+            filmes = this.atualizarFilmes(filmes, lojas);
             this.criarTransacoes(clientes, empregados, lojas, filmes);
             log.debug("Carga de informacoes finalizada com sucesso.");
         } catch (Throwable e) {
             log.error("Falha durante carga dos arquivos. Talvez nem todas as tabelas tenham sido inicializadas. Finalize a aplicacao e inicie novamente.", e);
         }
 
+    }
+
+    private List<Filme> atualizarFilmes(List<Filme> filmes, List<Loja> lojas) {
+        try {
+            for(Filme filme : filmes) {
+                filme.setLoja(lojas.get(random.nextInt(lojas.size())));
+            }
+            return this.filmesService.salvarFilmes(filmes);
+        } catch (Exception e) {
+            log.error("Falha ao atualizar filmes. Processo de criacao de dados finalizado.", e);
+            throw new AcessoBancoDadosException("Falha ao atualizar filmes");
+        }
     }
 
     private void criarTransacoes(List<Cliente> clientes, List<Empregado> empregados, List<Loja> lojas, List<Filme> filmes) {
@@ -112,7 +125,7 @@ public class InfoLoader {
         }
     }
 
-    private List<Loja> atualizarLojas(List<Loja> lojas, List<Filme> filmes, List<Empregado> empregados) {
+    private List<Loja> atualizarLojas(List<Loja> lojas, List<Empregado> empregados) {
         try {
             for(Loja loja : lojas) {
                 for(Empregado empregado : empregados) {
@@ -120,7 +133,6 @@ public class InfoLoader {
                         loja.getEmpregados().add(empregado);
                     }
                 }
-                loja.getFilmes().addAll(filmes);
             }
             return this.lojaService.salvarLojas(lojas);
         } catch (Exception e) {

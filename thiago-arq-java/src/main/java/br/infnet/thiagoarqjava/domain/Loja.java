@@ -34,15 +34,8 @@ public class Loja {
 
     private String nome;
 
-    @OneToMany
-    @JoinColumn(name = "filme_id", referencedColumnName = "id")
-    private Set<Filme> filmes;
-
     @OneToMany(mappedBy = "loja")
     private Set<Empregado> empregados;
-
-    @OneToMany(mappedBy = "loja")
-    private Set<Transacao> transacoes;
 
     public Set<Empregado> getEmpregados() {
         if(this.empregados == null) {
@@ -51,10 +44,4 @@ public class Loja {
         return this.empregados;
     }
 
-    public Set<Filme> getFilmes() {
-        if(this.filmes == null) {
-            this.filmes = new HashSet<>();
-        }
-        return this.filmes;
-    }
 }

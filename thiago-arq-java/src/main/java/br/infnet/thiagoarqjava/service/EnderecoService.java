@@ -39,7 +39,7 @@ public class EnderecoService {
         try {
             final Endereco enderecoCompleto = this.consultarEnderecoPorCep(Long.valueOf(endereco.getCep()));
             enderecoCompleto.setNumero(endereco.getNumero());
-            return this.repository.save(endereco);
+            return this.repository.save(enderecoCompleto);
         } catch (Exception e) {
             log.error("Falha ao salvar endereco {}", endereco, e);
             throw new AcessoBancoDadosException("Falha ao salvar novo endereco %s".formatted(endereco.getCep()));

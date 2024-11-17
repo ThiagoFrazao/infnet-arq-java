@@ -5,6 +5,7 @@ public enum Categoria {
     TERROR,
     SUSPENSE,
     COMEDIA,
-    DRAMA;
+    DRAMA,
+    ACAO;
 
 }

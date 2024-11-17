@@ -6,6 +6,7 @@ import br.infnet.thiagoarqjava.error.AcessoBancoDadosException;
 import br.infnet.thiagoarqjava.error.IdentificadorInvalidoException;
 import br.infnet.thiagoarqjava.repository.ClienteRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class ClienteService {
         }
     }
 
-    private Cliente salvarCliente(Cliente cliente) {
+    public Cliente salvarCliente(Cliente cliente) {
         try {
             cliente.setEndereco(this.enderecoService.salvarEndereco(cliente.getEndereco()));
             return repository.save(cliente);
@@ -60,4 +61,7 @@ public class ClienteService {
         }
     }
 
+    public List<Cliente> recuperarTodosClientes() {
+        return this.repository.findAll();
+    }
 }
