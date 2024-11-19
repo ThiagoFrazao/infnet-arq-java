@@ -1,5 +1,6 @@
 package br.infnet.thiagoarqjava.domain;
 
+import br.infnet.thiagoarqjava.models.InformacoesViaCep;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,14 +46,15 @@ public class Endereco {
 
     private String estado;
 
-    private String regiao;
-
-    private String ibge;
-
-    private String gia;
-
-    private String ddd;
-
-    private String siafi;
-
+    public Endereco(InformacoesViaCep enderecoViaCep) {
+        this.cep = enderecoViaCep.getCep();
+        this.logradouro = enderecoViaCep.getLogradouro();
+        this.numero = enderecoViaCep.getNumero();
+        this.complemento = enderecoViaCep.getComplemento();
+        this.unidade = enderecoViaCep.getUnidade();
+        this.bairro = enderecoViaCep.getBairro();
+        this.localidade = enderecoViaCep.getLocalidade();
+        this.uf = enderecoViaCep.getUf();
+        this.estado = enderecoViaCep.getEstado();
+    }
 }

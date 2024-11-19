@@ -3,6 +3,7 @@ package br.infnet.thiagoarqjava.service;
 import br.infnet.thiagoarqjava.domain.Endereco;
 import br.infnet.thiagoarqjava.error.AcessoApiExternaException;
 import br.infnet.thiagoarqjava.error.AcessoBancoDadosException;
+import br.infnet.thiagoarqjava.models.InformacoesViaCep;
 import br.infnet.thiagoarqjava.repository.EnderecoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,15 +24,15 @@ public class EnderecoService {
     }
 
     public Endereco consultarEnderecoPorCep(Long cep) {
-        final Endereco enderecoViaCep = this.webClient.get()
+        final InformacoesViaCep enderecoViaCep = this.webClient.get()
                 .uri("/{cep}/json/", cep)
-                .exchangeToMono(response -> response.bodyToMono(Endereco.class))
+                .exchangeToMono(response -> response.bodyToMono(InformacoesViaCep.class))
                 .block();
 
         if(enderecoViaCep == null) {
             throw new AcessoApiExternaException(HOST, cep);
         } else {
-            return enderecoViaCep;
+            return new Endereco(enderecoViaCep);
         }
     }
 
