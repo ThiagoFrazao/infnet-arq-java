@@ -1,7 +1,9 @@
 package br.infnet.thiagoarqjava.service;
 
+import br.infnet.thiagoarqjava.domain.Cliente;
 import br.infnet.thiagoarqjava.domain.Loja;
 import br.infnet.thiagoarqjava.error.AcessoBancoDadosException;
+import br.infnet.thiagoarqjava.error.IdentificadorInvalidoException;
 import br.infnet.thiagoarqjava.repository.LojaRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -37,7 +39,7 @@ public class LojaService {
         }
     }
 
-    private Loja salvarLoja(Loja loja) {
+    public Loja salvarLoja(Loja loja) {
         try {
             if(loja.getEndereco().getId() == null) {
                 loja.setEndereco(this.enderecoService.salvarEndereco(loja.getEndereco()));
@@ -50,4 +52,23 @@ public class LojaService {
     }
 
 
+    public List<Loja> recuperarTodasLojas() {
+        try {
+            return this.lojaRepository.findAll();
+        } catch (Exception e) {
+            log.error("Erro ao recuperar todas lojas.", e);
+            throw new AcessoBancoDadosException("Falha ao recuperar todas lojas");
+        }
+    }
+
+    public Loja recuperarLojaPorId(Long id) {
+        try {
+            return this.lojaRepository.findById(id).orElseThrow(() -> new IdentificadorInvalidoException(id, "LOJA"));
+        } catch (IdentificadorInvalidoException e) {
+            throw e;
+        } catch (Exception e) {
+            log.error("Erro ao recuperar loja {}", id, e);
+            throw new AcessoBancoDadosException("Não foi possivel recuperar loja com ID: %s".formatted(id));
+        }
+    }
 }

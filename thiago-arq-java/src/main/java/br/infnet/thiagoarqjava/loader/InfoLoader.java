@@ -4,14 +4,13 @@ import br.infnet.thiagoarqjava.domain.Cliente;
 import br.infnet.thiagoarqjava.domain.Empregado;
 import br.infnet.thiagoarqjava.domain.Filme;
 import br.infnet.thiagoarqjava.domain.Loja;
-import br.infnet.thiagoarqjava.domain.Pessoa;
 import br.infnet.thiagoarqjava.domain.StatusTransacao;
 import br.infnet.thiagoarqjava.domain.TipoTransacao;
 import br.infnet.thiagoarqjava.domain.Transacao;
 import br.infnet.thiagoarqjava.error.AcessoBancoDadosException;
 import br.infnet.thiagoarqjava.service.ClienteService;
 import br.infnet.thiagoarqjava.service.EmpregadoService;
-import br.infnet.thiagoarqjava.service.FilmesService;
+import br.infnet.thiagoarqjava.service.FilmeService;
 import br.infnet.thiagoarqjava.service.LojaService;
 import br.infnet.thiagoarqjava.service.TransacaoService;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -45,7 +44,7 @@ public class InfoLoader {
     private final ClienteService clienteService;
     private final LojaService lojaService;
     private final EmpregadoService empregadoService;
-    private final FilmesService filmesService;
+    private final FilmeService filmesService;
     private final TransacaoService transacaoService;
     private final Random random;
 
@@ -53,7 +52,7 @@ public class InfoLoader {
                       ClienteService clienteService,
                       LojaService lojaService,
                       EmpregadoService empregadoService,
-                      FilmesService filmesService,
+                      FilmeService filmesService,
                       TransacaoService transacaoService) {
         this.clienteService = clienteService;
         this.lojaService = lojaService;
