@@ -6,6 +6,8 @@ import br.infnet.thiagoarqjava.service.TransacaoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +32,11 @@ public class TransacaoController {
         } else {
             return ResponseEntity.ok(transacoesCliente);
         }
+    }
+
+    @PostMapping
+    public ResponseEntity<Transacao> criarTransacao(@RequestBody Transacao transacao) {
+        return ResponseEntity.ok(this.service.salvarTransacao(transacao));
     }
 
 }
